@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    name: Build, check and pack
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install the .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Build the plugin
+        run: dotnet build -c Release --nologo
+      - name: Install hsplugin
+        run: cargo install --locked --git https://github.com/hearthsound/plugin-sdk --tag v0.2.1 hearthsound-plugin-cli
+      - name: Check the plugin
+        run: hsplugin check
+      - name: Run the catalog conformance suite
+        run: hsplugin test catalog
+      - name: Pack the plugin
+        run: hsplugin pack --out-dir dist
+      - uses: actions/upload-artifact@v7
+        with:
+          name: hello-catalog.hsplugin
+          path: dist/*.hsplugin
