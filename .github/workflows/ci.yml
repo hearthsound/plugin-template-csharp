@@ -15,6 +15,15 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           global-json-file: global.json
+      # The .NET 9 SDK ships a mono-toolchain workload manifest whose
+      # WorkloadManifest.Wasi.targets fails the build with "The
+      # 'wasi-experimental' workload is not supported in .NET 9". The
+      # componentize SDK drives the wasi build itself and needs no workload,
+      # so the manifest is removed before restore.
+      - name: Drop the workload manifest that rejects the wasi build
+        run: |
+          find /usr/share/dotnet/sdk-manifests -maxdepth 2 -type d \
+            -name 'microsoft.net.workload.mono.toolchain.current' -print -exec rm -rf {} +
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
