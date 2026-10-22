@@ -75,16 +75,13 @@ component.
 
 ## Install into a server
 
-Install the archive with the server's `plugins` command, then approve it so the
-server can enable it:
+Install the archive with the server's `plugins` command:
 
 ```console
 hearthsound plugins install dist/com.example.hello-catalog-0.1.0.hsplugin
-hearthsound plugins approve com.example.hello-catalog
 ```
 
-A newly installed plugin waits for approval before it is enabled. Enable it
-with `hearthsound plugins enable <id>`.
+Installing grants the permissions the manifest requests and enables the plugin.
 
 ## Layout
 
