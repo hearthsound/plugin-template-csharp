@@ -1,10 +1,10 @@
 // Hello catalog plugin: answers every search with one greeting track, album and artist.
 
 using System.Text.Json;
-using HostConfig = CatalogProviderWorld.wit.imports.hearthsound.plugin.v0_2_0.HostConfigInterop;
-using Types = CatalogProviderWorld.wit.imports.hearthsound.plugin.v0_2_0.ITypes;
+using HostConfig = CatalogProviderWorld.wit.imports.hearthsound.plugin.v0_3_0.HostConfigInterop;
+using Types = CatalogProviderWorld.wit.imports.hearthsound.plugin.v0_3_0.ITypes;
 
-namespace CatalogProviderWorld.wit.exports.hearthsound.plugin.v0_2_0;
+namespace CatalogProviderWorld.wit.exports.hearthsound.plugin.v0_3_0;
 
 /// Constants and record builders shared by the catalog and lifecycle implementations.
 internal static class Hello
