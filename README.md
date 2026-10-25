@@ -44,7 +44,7 @@ target runs publish as part of the build.
 Install the plugin CLI from the SDK repository:
 
 ```console
-cargo install --locked --git https://github.com/hearthsound/plugin-sdk --tag v0.3.0 hearthsound-plugin-cli
+cargo install --locked --git https://github.com/hearthsound/plugin-sdk --tag v0.4.0 hearthsound-plugin-cli
 ```
 
 Then, from the repository root, validate the manifest and the component:
